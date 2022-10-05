@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:each="p : ${productList}">
-    <span th:text="${'Title: ' + p.title}"></span>
+    <span th:text="${'Title: ' + p.title}"/>
     <a th:href="@{'/product?id=' + ${p.id}}"></a>
 </div>
 </body>
