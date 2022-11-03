@@ -4,11 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="products")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Product {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private Long id;
+    @Column(name = "title")
     private String title;
-    private int cost;
+    @Column(name = "price")
+    private int price;
 }

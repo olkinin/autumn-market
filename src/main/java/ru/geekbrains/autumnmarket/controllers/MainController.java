@@ -1,38 +1,42 @@
 package ru.geekbrains.autumnmarket.controllers;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.autumnmarket.products.Product;
-import ru.geekbrains.autumnmarket.repository.ProductRepository;
 import ru.geekbrains.autumnmarket.service.ProductService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+
 public class MainController {
     @Autowired
     private ProductService productService;
 
-    @Autowired
-    private ProductRepository repository;
-
-    @GetMapping("/allProduct")
-
-    private List<Product> allProduct() {
-        return repository.allProducts();
+    public MainController(ProductService productService) {
+        this.productService = productService;
     }
 
-    @PostMapping("/addProduct")
+
+    @GetMapping("/products")
+    private List<Product> findAll() {
+        return productService.findAll();
+    }
+
+    @GetMapping("/products/{id}")
+    private Optional<Product> findById(@PathVariable Long id) {
+        return productService.findById(id);
+    }
+
+    @GetMapping("/products/delete/{id}")
+    private List<Product> deleteById(@PathVariable Long id) {
+        productService.deleteById(id);
+        return productService.findAll();
+    }
+
+    @PostMapping("/products")
     public void addProduct(@RequestBody Product product) {
-        repository.addProduct(product);
-    }
-
-    @PostMapping("/add")
-    @ResponseBody
-       public void add(Long id, String title, int cost) {
-        repository.add(id, title, cost);
+       productService.save(product);
     }
 }
