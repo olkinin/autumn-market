@@ -1,5 +1,6 @@
 package ru.geekbrains.autumnmarket.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.autumnmarket.products.Product;
@@ -36,7 +37,8 @@ public class MainController {
     }
 
     @PostMapping("/products")
-    public void addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody Product product) {
        productService.save(product);
+       return product;
     }
 }

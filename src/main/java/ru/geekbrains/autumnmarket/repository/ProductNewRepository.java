@@ -8,9 +8,6 @@ import java.util.List;
 
 public interface ProductNewRepository extends JpaRepository<Product, Long> {
 
-   // @Query("insert p from Products p value p.title=:title and p.price=:price")
-
-   // List<Product> addProduct(Long id);
-
+  
 
 }
