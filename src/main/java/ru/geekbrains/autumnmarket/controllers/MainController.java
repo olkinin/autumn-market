@@ -1,32 +1,42 @@
 package ru.geekbrains.autumnmarket.controllers;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.autumnmarket.products.Product;
 import ru.geekbrains.autumnmarket.service.ProductService;
 
 import java.util.List;
+import java.util.Optional;
 
-@Controller
-@RequiredArgsConstructor
+@RestController
+
 public class MainController {
-    private final ProductService productService;
+    @Autowired
+    private ProductService productService;
 
-    @GetMapping("/page")
-
-    private String page(Model model) {
-        model.addAttribute("productList", productService.allProduct());
-        return "productAll.html";
+    public MainController(ProductService productService) {
+        this.productService = productService;
     }
 
-    @GetMapping("/product")
 
-    public String productById(Model model, @RequestParam Long id) {
-        model.addAttribute("productById", productService.getProduct(id));
-        return "index.html";
+    @GetMapping("/products")
+    private List<Product> findAll() {
+        return productService.findAll();
+    }
+
+    @GetMapping("/products/{id}")
+    private Optional<Product> findById(@PathVariable Long id) {
+        return productService.findById(id);
+    }
+
+    @GetMapping("/products/delete/{id}")
+    private List<Product> deleteById(@PathVariable Long id) {
+        productService.deleteById(id);
+        return productService.findAll();
+    }
+
+    @PostMapping("/products")
+    public void addProduct(@RequestBody Product product) {
+       productService.save(product);
     }
 }

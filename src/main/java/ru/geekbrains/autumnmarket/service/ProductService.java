@@ -1,24 +1,35 @@
 package ru.geekbrains.autumnmarket.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.autumnmarket.products.Product;
-import ru.geekbrains.autumnmarket.repository.ProductRepository;
+import ru.geekbrains.autumnmarket.repository.ProductNewRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductRepository repository;
+    @Autowired
+    private final ProductNewRepository repository;
 
+    public List<Product> findAll() {
+        return repository.findAll();
+    }
 
-    public Product getProduct(Long id) {
+    public Optional<Product> findById(Long id) {
         return repository.findById(id);
     }
-
-    public List<Product> allProduct() {
-        return repository.allProducts();
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
+
+    public void save(Product product) {
+       repository.save(product);
+
+    }
+
 }
