@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ProductNewRepository extends JpaRepository<Product, Long> {
 
-  
+
 
 }

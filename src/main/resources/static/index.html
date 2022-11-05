@@ -21,13 +21,12 @@
             <td>Стоимость</td>
         </tr>
         <tbody>
-        <tr ng-repeat="p in productList">
+        <tr ng-repeat="p in products">
             <td>{{p.id}}</td>
             <td>{{p.title}}</td>
+            <td>{{p.price}}
             <td>
-                <button class="btn btn-danger" ng-click="changeScore(p.id, -5)">-</button>
-                {{p.cost}}
-                <button class="btn btn-primary" ng-click="changeScore(p.id, 5)">+</button>
+            <button class="btn btn-danger" ng-click="deleteProduct(p.id)">"Удалить товар"</button>
             </td>
         </tbody>
     </table>
