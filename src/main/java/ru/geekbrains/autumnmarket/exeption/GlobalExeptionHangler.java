@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExeptionHangler {
 
     @ExceptionHandler
-    public ResponseEntity<?> cathExeption(ResourseNotFoundExeption e){
+    public ResponseEntity<?> cathExeption(ResourceNotFoundExeption e){
         return new ResponseEntity<>(new MarketError(e.getMessage()), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler
+    public ResponseEntity<?> cathValidationExeption(DataValidationExeption e){
+        return new ResponseEntity<>(new MarketError(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }

@@ -27,7 +27,7 @@ public class ProductService {
     }
 
     public void save(Product product) {
-       repository.save(product);
+        repository.save(product);
 
     }
 
