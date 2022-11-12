@@ -6,11 +6,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.geekbrains.autumnmarket.entity.User;
 import ru.geekbrains.autumnmarket.exeption.DataValidationExeption;
 import ru.geekbrains.autumnmarket.exeption.ResourceNotFoundExeption;
 import ru.geekbrains.autumnmarket.products.Product;
 import ru.geekbrains.autumnmarket.service.CartService;
 import ru.geekbrains.autumnmarket.service.ProductService;
+import ru.geekbrains.autumnmarket.service.UserService;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +25,7 @@ public class MainController {
 
     private final ProductService productService;
     private final CartService cartService;
+    private final UserService userService;
 
 
     @GetMapping()
@@ -65,5 +68,10 @@ public class MainController {
         productService.deleteById(id);
 
     }
+    @GetMapping("/api/v1/users")
+    public List<User> findAllUsers(){
+        return userService.findAllUsers();
+    }
+
 
 }
