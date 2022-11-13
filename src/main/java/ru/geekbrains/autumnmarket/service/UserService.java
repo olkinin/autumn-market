@@ -1,6 +1,7 @@
 package ru.geekbrains.autumnmarket.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
-    private UsersRepo usersRepo;
+    @Autowired
+    private final UsersRepo usersRepo;
 
     public Optional<User> findByName(String name) {
         return usersRepo.findByName(name);

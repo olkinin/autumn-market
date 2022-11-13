@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/products")
+@RequestMapping("/api/v1/")
 public class MainController {
 
     private final ProductService productService;
@@ -28,19 +28,19 @@ public class MainController {
     private final UserService userService;
 
 
-    @GetMapping()
+    @GetMapping("products")
     private List<Product> findAll() {
         return productService.findAll();
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("products/{id}")
     private Optional<Product> findById(@PathVariable Long id) {
         return Optional.of(productService.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("Product " + id + " not found")));
     }
 
 
-    @PostMapping()
+    @PostMapping("products")
     public Product addProduct(@RequestBody @Validated Product product, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new DataValidationExeption(bindingResult.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
@@ -49,26 +49,26 @@ public class MainController {
         return product;
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("products/update/{id}")
     public Product updateProduct(@RequestBody Product product) {
         productService.save(product);
         return product;
     }
 
 
-    @GetMapping("/addCart/{id}")
+    @GetMapping("products/addCart/{id}")
     private List<Optional<Product>> addCart(@PathVariable Long id) {
         Optional<Product> product = productService.findById(id);
         return cartService.addProductInTheCart(product);
 
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("products/{id}")
     private void deleteById(@PathVariable Long id) {
         productService.deleteById(id);
 
     }
-    @GetMapping("/api/v1/users")
+    @GetMapping("/users")
     public List<User> findAllUsers(){
         return userService.findAllUsers();
     }
