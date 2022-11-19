@@ -23,12 +23,11 @@ public class ProductService {
     public Optional<Product> findById(Long id) {
         return repository.findById(id);
     }
-    public void deleteById(Long id) {
-        repository.deleteById(id);
+    public void deleteById(Long id) { repository.deleteById(id);
     }
 
     public void save(Product product) {
-       repository.save(product);
+        repository.save(product);
 
     }
 

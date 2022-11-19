@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="products")
@@ -14,11 +16,15 @@ import javax.persistence.*;
 
 public class Product {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @NotNull(message = "Товар должен иметь название")
     @Column(name = "title")
     private String title;
+    @Min(value = 1, message = "Цена товара не может быть менее 1 руб.")
     @Column(name = "price")
     private int price;
+
 }
+
