@@ -6,7 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.autumnmarket.entity.User;
 import ru.geekbrains.autumnmarket.exeption.DataValidationExeption;
 import ru.geekbrains.autumnmarket.exeption.ResourceNotFoundExeption;
 import ru.geekbrains.autumnmarket.products.Product;
@@ -25,7 +24,7 @@ public class MainController {
 
     private final ProductService productService;
     private final CartService cartService;
-    private final UserService userService;
+   private final UserService userService;
 
 
     @GetMapping()

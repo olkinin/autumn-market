@@ -21,7 +21,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 @Slf4j
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
-//       private final UserService userService;
+
     private final JwtRequestFilter jwtRequestFilter;
 
     @Override
@@ -29,7 +29,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
           http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/users/**").hasAnyRole("ADMIN")
+                //.antMatchers("/api/v1/users/**").hasAnyRole("ADMIN")
                 .antMatchers("/api/v1/products/**").hasAnyRole("ADMIN", "MANAGER")
                 .anyRequest().permitAll()
                 .and()

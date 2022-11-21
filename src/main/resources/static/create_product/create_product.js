@@ -1,12 +1,14 @@
-angular.module('app').controller('createProductController', function ($scope, $http, $location) {
-    const contextPath = 'http://localhost:8189/app/';
+(function () {
+var app = angular.module('app',['ngRoute', 'ngStorage'])})();
+var app=angular.module('app').controller('createProductController', function ($scope, $http, $location) {
+    const contextPath = 'http://localhost:8189/app';
 
     $scope.createProduct = function () {
         if ($scope.new_product == null) {
             alert('Форма не заполнена');
             return;
         }
-        $http.post(contextPath + 'api/v1/products', $scope.new_product)
+        $http.post(contextPath + '/api/v1/products', $scope.new_product)
             .then(function successCallback (response) {
                 $scope.new_product = null;
                 alert('Продукт успешно создан');

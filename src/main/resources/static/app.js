@@ -1,6 +1,7 @@
+
 (function () {
-    angular
-        .module('app', ['ngRoute', 'ngStorage'])
+var app = angular.module('app',['ngRoute', 'ngStorage'])
+//    angular.module('app',['ngRoute', 'ngStorage'])
         .config(config)
         .run(run);
 
@@ -34,7 +35,7 @@
     }
 })();
 
-angular.module('app').controller('appController', function ($rootScope, $scope, $http, $localStorage) {
+var app = angular.module('app').controller('appController', function ($rootScope, $scope, $http, $localStorage) {
     const contextPath = 'http://localhost:8189/app';
 
     $scope.tryToAuth = function () {
