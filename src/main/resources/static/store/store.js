@@ -1,7 +1,7 @@
 (function () {
 var app = angular.module('app',['ngRoute', 'ngStorage'])})();
 
-var app=angular.module('app').controller('storeController', function ($scope, $http, $location) {
+var app=angular.module('app').controller('storeController', function ($scope, $http, $location, $rootScope, $localStorage) {
    const contextPath = 'http://localhost:8189/app';
        $scope.loadProducts = function () {
            $http.get(contextPath + '/api/v1/products')

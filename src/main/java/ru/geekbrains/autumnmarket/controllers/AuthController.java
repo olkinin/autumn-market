@@ -16,23 +16,23 @@ import ru.geekbrains.autumnmarket.exeption.MarketError;
 import ru.geekbrains.autumnmarket.service.UserService;
 import ru.geekbrains.autumnmarket.utils.JwtTokenUtil;
 
-//@RestController
-//@RequiredArgsConstructor
-//public class AuthController {
-//
-//    private final UserService userService;
-//    private final JwtTokenUtil jwtTokenUtil;
-//    private final AuthenticationManager authenticationManager;
-//
-//    @PostMapping("/auth")
-//    public ResponseEntity<?> createAuthToken(@RequestBody AuthRequest authRequest) {
-//        try {
-//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getName(), authRequest.getPassword()));
-//        } catch (BadCredentialsException ex) {
-//            return new ResponseEntity<>(new MarketError("Incorrect username or password"), HttpStatus.UNAUTHORIZED);
-//        }
-//        UserDetails userDetails = userService.loadUserByUsername(authRequest.getName());
-//        String token = jwtTokenUtil.generateToken(userDetails);
-//        return ResponseEntity.ok(new AuthResponse(token));
-//    }
-//}
+@RestController
+@RequiredArgsConstructor
+public class AuthController {
+
+    private final UserService userService;
+    private final JwtTokenUtil jwtTokenUtil;
+    private final AuthenticationManager authenticationManager;
+
+    @PostMapping("/auth")
+    public ResponseEntity<?> createAuthToken(@RequestBody AuthRequest authRequest) {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getName(), authRequest.getPassword()));
+        } catch (BadCredentialsException ex) {
+            return new ResponseEntity<>(new MarketError("Incorrect username or password"), HttpStatus.UNAUTHORIZED);
+        }
+        UserDetails userDetails = userService.loadUserByUsername(authRequest.getName());
+        String token = jwtTokenUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new AuthResponse(token));
+    }
+}
