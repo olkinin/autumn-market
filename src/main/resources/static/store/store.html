@@ -1,4 +1,6 @@
-<div>
+
+    <div ng-controller="storeController" >
+        <script src='store/store.js'></script>
     <p></p>
     <h3>Каталог товаров</h3>
     <table class="table">
@@ -11,10 +13,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="p in products">
-            <td>{{p.id}}</td>
-            <td>{{p.title}}</td>
-            <td>{{p.price}}</td>
+        <tr ng-repeat="product in products">
+            <td>{{product.id}}</td>
+            <td>{{product.title}}</td>
+            <td>{{product.price}}</td>
             <td>
                 <button class="btn btn-primary" ng-click="navToEditProductPage(p.id)">Изменить</button>
             </td>
@@ -31,3 +33,4 @@
         <!--</ul>-->
     <!--</nav>-->
 </div>
+
