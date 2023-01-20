@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.autumnmarket.products.Product;
 import ru.geekbrains.autumnmarket.repository.ProductNewRepository;
+import ru.geekbrains.autumnmarket.repository.ProductRepositoryProxy;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +16,8 @@ import java.util.Optional;
 public class ProductService {
 
     @Autowired
-    private final ProductNewRepository repository;
+  private ProductNewRepository repository = new ProductRepositoryProxy();
+
 
     public List<Product> findAll() {
         return repository.findAll();
