@@ -1,4 +1,6 @@
-angular.module('app', []).controller('editProductController', function ($scope, $http) {
+(function () {
+var app = angular.module('app',['ngRoute', 'ngStorage'])})();
+var app=angular.module('app').controller('editProductController', function ($scope, $http, $routeParams, $location) {
              const contextPath = 'http://localhost:8189/app';
 
               $scope.prepareProductForUpdate = function () {
